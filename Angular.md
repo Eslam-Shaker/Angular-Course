@@ -689,3 +689,173 @@ export class DirectivesComponent implements AfterViewChecked {
   }
 }
 ```
+
+## ✏️ Angular Routing
+
+Angular Routing is a powerful feature that allows you to navigate between different views or components in your application.
+
+> **📝 router-outlet:** _A directive that marks the location where the router should display the component for the activated route._
+
+appComponent.ts code
+
+```typescript
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+```
+
+```HTML
+<app-header />
+
+<router-outlet></router-outlet>
+```
+
+> **📝 routerLink:** _A directive that generates an anchor element with the href attribute set to the route path._
+
+app.routes.ts code
+
+```typescript
+export const routes: Routes = [
+  {
+    path: "courses",
+    component: CoursesComponent,
+  },
+];
+```
+
+appComponent.html code
+
+```HTML
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      routerLink="courses"
+    >
+      Courses
+    </a>
+  </li>
+</ul>
+```
+
+> **📝 routerLinkActive:** _A directive that adds a CSS class to an element when the linked route is active._
+
+appComponent.html code
+
+```HTML
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      routerLink="courses"
+      routerLinkActive="active"
+    >
+      Courses
+    </a>
+  </li>
+</ul>
+```
+
+> **📝 routerLinkActiveOptions:** _A directive that allows you to customize the routerLinkActive directive._
+
+app.routes.ts code
+
+```typescript
+export const routes: Routes = [
+  {
+    path: "courses",
+    component: CoursesComponent,
+  },
+  {
+    path: "courses/:id",
+    component: CourseDetailsComponent,
+  },
+];
+```
+
+appComponent.html code
+
+```HTML
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      routerLink="courses"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Courses
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      routerLink="courses/5"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Course Details
+    </a>
+  </li>
+</ul>
+```
+
+> **📝 Wildcard Notation:** _A notation used in route configuration to match any URL path._
+
+app.routes.ts code
+
+```typescript
+export const routes: Routes = [
+  {
+    path: "courses",
+    component: CoursesComponent,
+  },
+  {
+    path: "courses/:id",
+    component: CourseDetailsComponent,
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent,
+  },
+];
+```
+
+> **📝 Nesting Routing:** _A technique used to create nested routes in Angular applications._
+
+app.routes.ts code
+
+```typescript
+export const routes: Routes = [
+  {
+    path: "account",
+    component: AccountComponent,
+    children: [
+      {
+        path: "login",
+        component: LoginComponent,
+      },
+      {
+        path: "register",
+        component: RegisterComponent,
+      },
+      {
+        path: "",
+        redirectTo: "/account/login",
+        pathMatch: "full",
+      },
+    ],
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent,
+  },
+];
+```
