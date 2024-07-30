@@ -2,6 +2,8 @@
 
 ## ✏️ Data Binding
 
+Data binding is a technique that allows you to bind data from a data source to a UI component.
+
 > **📝 Interpolation Binding**
 
 component.ts code
@@ -568,6 +570,9 @@ parentComponent.html code
 ```
 
 ## ✏️ Lifecycle Hooks
+
+Lifecycle hooks are methods that are called at specific points in the component's lifecycle. They are used to
+perform setup and teardown tasks, such as initializing data, handling user input, and updating the DOM.
 
 > **📝 ngOnInit:** _Runs once after Angular has initialized all the component's inputs._
 
