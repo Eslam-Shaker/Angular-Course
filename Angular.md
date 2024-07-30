@@ -450,3 +450,119 @@ component.html code
   </ul>
 </div>
 ```
+
+## ✏️ Share Data Between Components
+
+> 📝 _Share Data From Parent Component To Child Component_
+
+childComponent.ts code
+
+```typescript
+interface Course {
+  id: number;
+  title: string;
+  author: string;
+  publication_year: number;
+  genre: {};
+  description: string;
+  cover_image: string;
+}
+
+@Input({ required: true }) course: Course = {} as Course;
+```
+
+parentComponent.html code
+
+```HTML
+<div class="container">
+  <div id="cards">
+    @for (course of courses; track course.id) {
+    <app-card [course]="course" />
+    } @empty {
+    <p>No courses found</p>
+    }
+  </div>
+</div>
+```
+
+> 📝 _Share Data From Child Component To Parent Component_
+
+childComponent.ts code
+
+```typescript
+interface Course {
+  id: number;
+  title: string;
+  author: string;
+  publication_year: number;
+  genre: {};
+  description: string;
+  cover_image: string;
+}
+
+@Output('viewCourseData') viewCourseData = new EventEmitter<Course>();
+
+viewCourse(): void {
+   this.viewCourseData.emit(this.course);
+}
+```
+
+parentComponent.ts code
+
+```typescript
+interface Course {
+  id: number;
+  title: string;
+  author: string;
+  publication_year: number;
+  genre: {};
+  description: string;
+  cover_image: string;
+}
+
+onCourseClicked(course: Course): void {
+    console.log('Course Clicked: ', course);
+}
+```
+
+childComponent.html code
+
+```HTML
+<div class="card card-item">
+  <img src="/images/Book.png" class="card-img-top card-img" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{{ course.title }}</h5>
+    <div>
+      <p class="card-text">
+        {{ course.description }}
+      </p>
+    </div>
+    <div>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="viewCourse()"
+      >
+        Show Course
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+parentComponent.html code
+
+```HTML
+<div class="container">
+  <div id="cards">
+    @for (course of courses; track course.id) {
+    <app-card
+    [course]="course"
+    (viewCourseData)="onCourseClicked($event)"
+     />
+    } @empty {
+    <p>No courses found</p>
+    }
+  </div>
+</div>
+```
