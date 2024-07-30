@@ -368,3 +368,85 @@ component.html code
   </div>
 </div>
 ```
+## ✏️ Pipes
+
+> 📝 _To Format Data In Angular_
+
+component.ts code
+
+```typescript
+data = {
+  title: "course title",
+  description: "course description",
+  publishedAt: new Date().toLocaleString(),
+  price: 200.4576,
+  discount: 0.25,
+};
+```
+
+component.html code
+
+```HTML
+<div class="container">
+  <ul class="container" id="pipes-list">
+   <!-- UpperCase Pipe -->
+    <li>
+      <span class="fw-bold text-danger">UpperCase:</span>
+      {{ data.title | uppercase }}
+    </li>
+
+   <!-- LowerCase Pipe -->
+    <li>
+      <span class="fw-bold text-danger">LowerCase:</span>
+      {{ data.title | lowercase }}
+    </li>
+
+   <!-- TitleCase Pipe -->
+    <li>
+      <span class="fw-bold text-danger">TitleCase:</span>
+      {{ data.description | titlecase }}
+    </li>
+
+   <!-- Date Pipe -->
+    <li>
+      <span class="fw-bold text-danger">Date:</span>
+      {{ data.publishedAt | date : "dd-MM-yyyy HH:mm:ss" }}
+    </li>
+
+   <!-- Decimal Pipe -->
+    <li>
+      <span class="fw-bold text-danger">Decimal:</span>
+      {{ data.price | number : ".1-2" }}
+    </li>
+
+   <!-- Currency Pipe -->
+    <li>
+      <span class="fw-bold text-danger">Currency:</span>
+      {{ data.price | currency }}
+    </li>
+
+   <!-- Percent Pipe -->
+    <li>
+      <span class="fw-bold text-danger">Percent:</span>
+      {{ data.discount | percent }}
+    </li>
+
+   <!-- JSON Pipe -->
+    <li>
+      <span class="fw-bold text-danger">Json:</span>
+      {{ data | json }}
+    </li>
+
+   <!-- KeyValue Pipe -->
+    <li>
+      <span class="fw-bold text-danger">KeyValue:</span>
+      @for (item of data | keyvalue; track item) {
+      <div>
+        <span class="text-info">key: </span> {{ item.key }}
+        <span class="text-info">value: </span> {{ item.value }}
+      </div>
+      }
+    </li>
+  </ul>
+</div>
+```
