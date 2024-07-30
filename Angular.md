@@ -566,3 +566,126 @@ parentComponent.html code
   </div>
 </div>
 ```
+
+## ✏️ Lifecycle Hooks
+
+> **📝 ngOnInit:** _Runs once after Angular has initialized all the component's inputs._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements OnInit {
+  title: string = "Main Title";
+
+  ngOnInit(): void {
+    console.log("OnInit Parent Component");
+    timer(2000).subscribe(() => (this.title = "Changed Title"));
+  }
+}
+```
+
+component.html code
+
+```HTML
+<div class="container">
+   <p class="text-danger">{{title}}</p>
+</div>
+```
+
+> **📝 ngOnChanges:** _Runs every time the component's inputs have changed._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements OnChanges {
+  index: number = 1101;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(`%c ngOnChanges ${this.index}`, "color: red");
+  }
+}
+```
+
+> **📝 ngDoCheck:** _Runs every time this component is checked for changes._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements DoCheck {
+  index: number = 1101;
+
+  ngDoCheck(): void {
+    console.log(`%c ngDoCheck ${this.index}`, "color: purple");
+  }
+}
+```
+
+> **📝 ngOnDestroy:** _Runs once before the component is destroyed._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements OnDestroy {
+  index: number = 1101;
+
+  ngOnDestroy(): void {
+    console.log(`%c ngOnDestroy ${this.index}`, "color: blue");
+  }
+}
+```
+
+> **📝 ngAfterContentInit:** _Runs once after the component's content has been initialized._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements AfterContentInit {
+  index: number = 1101;
+
+  ngAfterContentInit(): void {
+    console.log(`%c ngAfterContentInit ${this.index}`, "color: green");
+  }
+}
+```
+
+> **📝 ngAfterContentChecked:** _Runs every time this component content has been checked for changes._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements AfterContentChecked {
+  index: number = 1101;
+
+  ngAfterContentChecked(): void {
+    console.log(`%c ngAfterContentChecked ${this.index}`, "color: red");
+  }
+}
+```
+
+> **📝 ngAfterViewInit:** _Runs once after the component's view has been initialized._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements AfterViewInit {
+  index: number = 1101;
+
+  ngAfterViewInit(): void {
+    console.log(`%c ngAfterViewInit ${this.index}`, "color: purple");
+  }
+}
+```
+
+> **📝 ngAfterViewChecked:** _Runs every time the component's view has been checked for changes._
+
+component.ts code
+
+```typescript
+export class DirectivesComponent implements AfterViewChecked {
+  index: number = 1101;
+
+  ngAfterViewChecked(): void {
+    console.log(`%c ngAfterViewChecked ${this.index}`, "color: blue");
+  }
+}
+```
