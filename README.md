@@ -1,5 +1,7 @@
 # 📝 Angular Course Notes
 
+[AngularCourseForBeginners](https://youtube.com/playlist?list=PLgU7izgeR2lwwNRNY4fYQf3GZawV-EGnW&si=OOQ5nu_N9HvZYtrE)
+
 ## ✏️ Data Binding
 
 Data binding is a technique that allows you to bind data from a data source to a UI component.
@@ -106,6 +108,7 @@ component.html code
   <p [style.font-size]="fontSize">Change Font Size</p>
 </div>
 ```
+
 ## ✏️ Directives
 
 > **📝 ngFor | @for :** _Repeat a node for each item in a list_
@@ -300,12 +303,18 @@ component.html code
 
 ```html
 <div id="content">
-  <div *ngFor="let tool of techs; let id = index" [ngClass]="tool.isActive ? 'active' : 'notActive'" class="item">
+  <div
+    *ngFor="let tool of techs; let id = index"
+    [ngClass]="tool.isActive ? 'active' : 'notActive'"
+    class="item"
+  >
     <img [src]="tool.logo" alt="" srcset="" />
     <h3>{{ tool.name }}</h3>
     <p>{{ tool.description }}</p>
     <button type="button" (click)="deleteItem(id)">Delete</button>
-    <button type="button" (click)="setActive(id)">{{ tool.isActive ? "Not Active" : "Set Active" }}</button>
+    <button type="button" (click)="setActive(id)">
+      {{ tool.isActive ? "Not Active" : "Set Active" }}
+    </button>
   </div>
 </div>
 ```
@@ -361,15 +370,22 @@ component.html code
 
 ```html
 <div id="content">
-  <div *ngFor="let tool of techs; let id = index" [ngStyle]="currentStyles" class="item">
+  <div
+    *ngFor="let tool of techs; let id = index"
+    [ngStyle]="currentStyles"
+    class="item"
+  >
     <img [src]="tool.logo" alt="" srcset="" />
     <h3>{{ tool.name }}</h3>
     <p>{{ tool.description }}</p>
     <button type="button" (click)="deleteItem(id)">Delete</button>
-    <button type="button" (click)="setActive(id)">{{ tool.isActive ? "Not Active" : "Set Active" }}</button>
+    <button type="button" (click)="setActive(id)">
+      {{ tool.isActive ? "Not Active" : "Set Active" }}
+    </button>
   </div>
 </div>
 ```
+
 ## ✏️ Pipes
 
 > 📝 _To Format Data In Angular_
